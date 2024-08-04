@@ -12,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Advice />
       <Clock />
       <StopWatch />
       <Timer />
@@ -20,6 +21,28 @@ function App() {
     </>
   );
 }
+
+// 한국어 명언
+const Advice = () => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch('https://korean-advice-open-api.vercel.app/api/advice')
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  }, []);
+  return (
+    <>
+      {data && (
+        <>
+          <div>{data.message}</div>
+          <div>
+            -{data.authorProfile}, {data.author}-
+          </div>
+        </>
+      )}
+    </>
+  );
+};
 
 //현재시간 표시
 const Clock = () => {
@@ -128,7 +151,7 @@ const Timer = () => {
         onClick={() => {
           setTime(0);
           setIsOn(false);
-          // setStartTime(0) --> 사용법 확인하기;
+          // setStartTime(0); --> 사용법 확인하기;
         }}
       >
         리셋
