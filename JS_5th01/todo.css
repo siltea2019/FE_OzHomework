@@ -1,0 +1,139 @@
+/* css 전체 스타일 */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Grandiflora One", cursive;
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+}
+
+/* 목록 전체 */
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  position: relative;
+  margin: auto;
+  width: 500px;
+  height: 800px;
+  border-radius: 100px;
+  background-color: #E1E0C3
+}
+
+.app > h1{
+  font-size: 2em;
+  text-align: center;
+  color: #4C7683;  
+}
+
+.app > span {
+  display: flex;
+  justify-content: center;
+  font-size: 1em;
+  text-align: center;
+  margin: 10px 5px;
+  color: #4C7683;
+}
+
+/* 리스트 부분 */
+ul{
+  max-height: 420px;
+  overflow: auto;
+ }
+
+ul > li{
+  cursor: pointer;
+  position: relative;
+  list-style-type: none;
+  width: 200px;
+  height: 40px;
+  margin-bottom: 10px;
+  background-color: #4C7683;
+  border-radius: 8px;
+  text-align: center;
+  left : 30px;
+}
+
+ul > li > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px; 
+  height: 16px;
+  border-radius: 8px;
+  bottom: 2px;
+}
+
+#todo-form {
+  background-color:transparent;
+  position:absolute;
+  bottom: 20px;
+  left: 90px;
+  border-radius: 8px;
+}
+
+/* inpu 입력란 */
+input{
+  font-size: 1em;
+  font-family: "Grandiflora One";
+  margin: 0;
+  border: none;
+  height: 45px;
+  border-radius: 28px 0 0 28px;
+  background-color: #4C7683;
+  color: #FFFFFF;
+}
+input[type="text"]{
+  width: 240px;  
+  text-align: center;
+  
+}
+input[type="text"]:focus{
+  outline: none;
+}
+input[type="submit"]{
+  cursor: pointer;
+  width: 80px;
+  border-radius: 0 28px 28px 0;
+  background-color: #4C7683;
+  color: #FFFFFF
+}
+
+input::placeholder{
+  color: #D8E7EF;
+}
+
+/* 각종 hover및 작동부 */
+.delbtn {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.done {
+  color : #DD9EA6;
+  width: 350px;
+  text-decoration: line-through;
+} 
+
+.done :hover{
+  background-color: grey;
+}
+
+.yet {
+  color: #FFFFFF;
+  width: 350px;
+}

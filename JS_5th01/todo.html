@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>할 일 목록</title>
+    <link rel="stylesheet" href="todo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Grandiflora+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div class="app">
+        <!-- 추후 레이아웃 디자인 용이-->
+        <span id="todo-day"></span>
+        <h1>할 일 목록</h1>
+        <!-- 제목 // 매일의 날짜가 자동 업데이트 되게-->
+        <br />
+        <ul id="todo-list"></ul>
+        <!-- 할일이 추가 될때마다 추가되는 영역-->
+        <form action="" id="todo-form">
+          <!-- 할일 받아서 제출하는 영역-->
+          <input
+            type="text"
+            name="todo"
+            placeholder="오늘 할일을 적어보아요"
+            autocomplete="off"
+          />
+          <input type="submit" value="추가" />
+          <!-- 제출버튼-->
+        </form>
+      </div>
+    </div>
+
+    <script src="todo.js"></script>
+  </body>
+</html>
