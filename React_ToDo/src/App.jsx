@@ -12,11 +12,130 @@ function App() {
 
   return (
     <>
+      <Clock />
+      <StopWatch />
+      <Timer />
       <ToDoAddInput setToDo={setToDo} />
       <ToDoList todo={todo} setToDo={setToDo} />
     </>
   );
 }
+
+//현재시간 표시
+const Clock = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+  }, []);
+
+  return <div>{time.toLocaleTimeString()}</div>;
+};
+
+const formatTime = (seconds) => {
+  const timeString = `${String(Math.floor(seconds / 3600)).padStart(
+    2,
+    '0'
+  )}:${String(Math.floor((seconds % 3600) / 60)).padStart(2, '0')}:${String(
+    seconds % 60
+  ).padStart(2, '0')}`;
+  return timeString;
+};
+
+// 스탑워치
+const StopWatch = () => {
+  const [time, setTime] = useState(0);
+  const [isOn, setIsOn] = useState(false);
+  const timeRef = useRef(null);
+
+  useEffect(() => {
+    if (isOn === true) {
+      const timerId = setInterval(() => {
+        setTime((prev) => prev + 1);
+      }, 1000);
+      timeRef.current = timerId;
+    } else {
+      clearInterval(timeRef.current);
+    }
+  }, [isOn]);
+
+  return (
+    <div>
+      {formatTime(time)}
+      <button onClick={() => setIsOn((prev) => !prev)}>
+        {isOn ? '끄기' : '켜기'}
+      </button>
+      <button
+        onClick={() => {
+          setTime(0);
+          setIsOn(false);
+        }}
+      >
+        리셋
+      </button>
+    </div>
+  );
+};
+
+const Timer = () => {
+  const [startTime, setStartTime] = useState(0);
+  const [isOn, setIsOn] = useState(false);
+  const [time, setTime] = useState(0);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (time > 0 && isOn) {
+      const timerId = setInterval(() => {
+        setTime((prev) => prev - 1);
+      }, 1000);
+      timerRef.current = timerId;
+    } else if (!isOn || time == 0) {
+      clearInterval(timerRef.current);
+    }
+    return () => clearInterval(timerRef.current);
+  }, [isOn, time]);
+
+  return (
+    <div>
+      <div>{time ? formatTime(time) : formatTime(startTime)}</div>
+      <button
+        onClick={() => {
+          setIsOn(true);
+          setTime(time ? time : startTime);
+          setStartTime(0);
+        }}
+      >
+        시작
+      </button>
+      <button
+        onClick={() => {
+          setIsOn(false);
+        }}
+      >
+        멈춤
+      </button>
+      <input
+        type="range"
+        value={startTime}
+        min="0"
+        max="360"
+        step="10"
+        onChange={(event) => setStartTime(event.target.value)}
+      />
+      <button
+        onClick={() => {
+          setTime(0);
+          setIsOn(false);
+          // setStartTime(0) --> 사용법 확인하기;
+        }}
+      >
+        리셋
+      </button>
+    </div>
+  );
+};
 
 // To Do 내용입력 (props자식 컴포넌트)
 const ToDoAddInput = ({ setToDo }) => {
