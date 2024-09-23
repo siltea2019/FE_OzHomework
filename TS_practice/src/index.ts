@@ -2,8 +2,8 @@
 
 let userName: string = 'Su Min';
 
-function greeting(name: string) {
-  return `Hello, ${name}!`;
+function greeting(userName: string) {
+  return console.log(`Hello, ${userName}!`);
 }
 
 greeting(userName);
@@ -16,10 +16,10 @@ let birthYear: boolean | null = null;
 
 if (userAge === 32) {
   birthYear = true;
-  console.log(`당신은 ${userAge}살, 1992년생 원숭이띠 입니다`);
+  console.log(`당신은 ${userAge}살, 1992년생 원숭이띠 입니다.`);
 } else {
   birthYear = false;
-  console.log(`당신은 ${userAge}살, 1992년생 원숭이띠가 아니군요`);
+  console.log(`당신은 ${userAge}살, 1992년생 원숭이띠가 아니군요!`);
 }
 
 // null
@@ -33,7 +33,7 @@ function fetchUserData() {
 if (userData === null) {
   console.log('User data is not available yet.');
 } else {
-  console.log(`Welcome, ${userName}`);
+  console.log(`Welcome, ${userName}!`);
 }
 
 fetchUserData();
